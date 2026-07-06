@@ -1,4 +1,4 @@
-import 'package:water_intake_tracker/widgets/barsgraph/individual_bar.dart';
+import 'package:water_intake_tracker/widgets/bargraph/individual_bar.dart';
 
 class BarData {
   final double satWaterAmnt;

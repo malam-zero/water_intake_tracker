@@ -50,6 +50,7 @@ class WaterData extends ChangeNotifier {
       for (var element in extractedData.entries) {
         waterDateList.add(
           WaterModel(
+            id: element.key,
             amount: element.value['amount'],
             dateTime: DateTime.parse(element.value['dateTime']),
             unit: element.value['unit'],
@@ -61,5 +62,19 @@ class WaterData extends ChangeNotifier {
     } else {
       return waterDateList;
     }
+  }
+
+  void delete(WaterModel waterModel) async {
+    final url = Uri.https(
+      'water-intaker-e27fe-default-rtdb.asia-southeast1.firebasedatabase.app',
+      'water/${waterModel.id}.json',
+    );
+    final response = await http.delete(url);
+    if (response.statusCode == 200) {
+      waterDateList.removeWhere((element) => element.id == waterModel.id);
+    } else {
+      Exception;
+    }
+    notifyListeners();
   }
 }

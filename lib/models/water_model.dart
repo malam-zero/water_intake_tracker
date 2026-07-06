@@ -23,4 +23,5 @@ class WaterModel {
   Map<String, dynamic> toJson() {
     return {'amount': amount, 'unit': 'ml', 'dateTime': DateTime.now()};
   }
+
 }

@@ -3,6 +3,7 @@ import 'package:flutter_gap/flutter_gap.dart';
 import 'package:provider/provider.dart';
 import 'package:water_intake_tracker/data/water_data.dart';
 import 'package:water_intake_tracker/models/water_model.dart';
+import 'package:water_intake_tracker/widgets/water_tile.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -106,7 +107,7 @@ class _HomePageState extends State<HomePage> {
           itemCount: value.waterDateList.length,
           itemBuilder: (context, index) {
             final waterModel = value.waterDateList[index];
-            return ListTile(title: Text(waterModel.amount.toString()));
+            return WaterTile(waterModel: waterModel);
           },
         ),
       ),
