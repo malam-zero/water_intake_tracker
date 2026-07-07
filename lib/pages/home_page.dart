@@ -112,10 +112,6 @@ class _HomePageState extends State<HomePage> {
     return Consumer<WaterData>(
       builder: (context, value, child) => Scaffold(
         appBar: AppBar(
-          leading: IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.menu_outlined),
-          ),
           actions: [
             IconButton(onPressed: () {}, icon: Icon(Icons.handyman_sharp)),
           ],
@@ -144,7 +140,27 @@ class _HomePageState extends State<HomePage> {
                 : Center(child: CircularProgressIndicator()),
           ],
         ),
+        drawer: myDrawer(),
       ),
     );
   }
+
+  Drawer myDrawer() => Drawer(
+    child: ListView(
+      children: [
+        DrawerHeader(
+          decoration: BoxDecoration(color: Theme.of(context).primaryColor),
+          child: Text(
+            "Wate InTake",
+            style: Theme.of(context).textTheme.titleMedium!.copyWith(
+              fontWeight: FontWeight.bold,
+              color: Theme.of(context).colorScheme.inversePrimary,
+            ),
+          ),
+        ),
+        ListTile(title: Text("Settings"), onTap: () {}),
+        ListTile(title: Text("About"),onTap: () {}),
+      ],
+    ),
+  );
 }
