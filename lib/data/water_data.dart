@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:water_intake_tracker/models/water_model.dart';
+import 'package:water_intake_tracker/utils/date_time_herlper.dart';
 
 class WaterData extends ChangeNotifier {
   List<WaterModel> waterDateList = [];
@@ -108,5 +109,34 @@ class WaterData extends ChangeNotifier {
       Exception;
     }
     notifyListeners();
+  }
+
+  String calculteWeeklyWaterIntake(WaterData value) {
+    double weeklyWaterIntake = 0;
+
+    for (var water in value.waterDateList) {
+      weeklyWaterIntake += double.parse(water.amount.toString());
+    }
+
+    return weeklyWaterIntake.toStringAsFixed(2);
+  }
+
+  Map<String, double> calculateDailyWaterSummary() {
+    Map<String, double> dailyWaterSummary = {};
+
+    for (var water in waterDateList) {
+      String date = convertdateTimeString(water.dateTime);
+      double amount = double.parse(water.toString());
+
+      if (dailyWaterSummary.containsKey(date)) {
+        double currentAmoount = dailyWaterSummary[date]!;
+        currentAmoount += amount;
+        dailyWaterSummary[date];
+      } else {
+        dailyWaterSummary.addAll({date: amount});
+      }
+    }
+
+    return dailyWaterSummary;
   }
 }
