@@ -64,6 +64,38 @@ class WaterData extends ChangeNotifier {
     }
   }
 
+  String getWeekday(DateTime dateTime) {
+    switch (dateTime.weekday) {
+      case 1:
+        return 'Mon';
+      case 2:
+        return 'Tue';
+      case 3:
+        return 'Wed';
+      case 4:
+        return 'Thu';
+      case 5:
+        return 'Fri';
+      case 6:
+        return 'Sat';
+      case 7:
+        return 'Sun';
+      default:
+        return '';
+    }
+  }
+
+  DateTime getStartofWeek() {
+    DateTime? startOfWeek;
+    DateTime dateTime = DateTime.now();
+    for (int i = 0; i < 7; i++) {
+      if (getWeekday(dateTime.subtract(Duration(days: i))) == 'Sat') {
+        startOfWeek = dateTime.subtract(Duration(days: i));
+      }
+    }
+    return startOfWeek!; // Fallback return
+  }
+
   void delete(WaterModel waterModel) async {
     final url = Uri.https(
       'water-intaker-e27fe-default-rtdb.asia-southeast1.firebasedatabase.app',

@@ -29,7 +29,7 @@ class BarData {
       IndividualBar(x: 3, y: tuesWaterAmnt),
       IndividualBar(x: 4, y: wedWaterAmnt),
       IndividualBar(x: 5, y: thursWaterAmnt),
-      IndividualBar(x: 6, y: friWaterAmnt),
+      IndividualBar(x: 6, y: friWaterAmnt), 
     ];
   }
 }

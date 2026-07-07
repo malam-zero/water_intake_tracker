@@ -3,6 +3,7 @@ import 'package:flutter_gap/flutter_gap.dart';
 import 'package:provider/provider.dart';
 import 'package:water_intake_tracker/data/water_data.dart';
 import 'package:water_intake_tracker/models/water_model.dart';
+import 'package:water_intake_tracker/widgets/water_intake_summary.dart';
 import 'package:water_intake_tracker/widgets/water_tile.dart';
 
 class HomePage extends StatefulWidget {
@@ -127,15 +128,22 @@ class _HomePageState extends State<HomePage> {
           onPressed: addWater,
           child: Icon(Icons.add),
         ),
-        body: !_isLoading
-            ? ListView.builder(
-                itemCount: value.waterDateList.length,
-                itemBuilder: (context, index) {
-                  final waterModel = value.waterDateList[index];
-                  return WaterTile(waterModel: waterModel);
-                },
-              )
-            : Center(child: CircularProgressIndicator()),
+        body: ListView(
+          children: [
+            WaterIntakeSummary(startOfWeek: value.getStartofWeek()),
+            !_isLoading
+                ? ListView.builder(
+                    shrinkWrap: true,
+                    physics: NeverScrollableScrollPhysics(),
+                    itemCount: value.waterDateList.length,
+                    itemBuilder: (context, index) {
+                      final waterModel = value.waterDateList[index];
+                      return WaterTile(waterModel: waterModel);
+                    },
+                  )
+                : Center(child: CircularProgressIndicator()),
+          ],
+        ),
       ),
     );
   }
