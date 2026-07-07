@@ -3,6 +3,8 @@ import 'package:flutter_gap/flutter_gap.dart';
 import 'package:provider/provider.dart';
 import 'package:water_intake_tracker/data/water_data.dart';
 import 'package:water_intake_tracker/models/water_model.dart';
+import 'package:water_intake_tracker/pages/about_page.dart';
+import 'package:water_intake_tracker/pages/settings_page.dart';
 import 'package:water_intake_tracker/widgets/water_intake_summary.dart';
 import 'package:water_intake_tracker/widgets/water_tile.dart';
 
@@ -158,8 +160,24 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
         ),
-        ListTile(title: Text("Settings"), onTap: () {}),
-        ListTile(title: Text("About"),onTap: () {}),
+        ListTile(
+          title: Text("Settings"),
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => SettingsPage()),
+            );
+          },
+        ),
+        ListTile(
+          title: Text("About"),
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => AboutPage()),
+            );
+          },
+        ),
       ],
     ),
   );
